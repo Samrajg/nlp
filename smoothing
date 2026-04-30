@@ -1,19 +1,13 @@
-from collections import Counter
-from nltk.util import ngrams
-sentence="i love nlp and i love coding"
-words=sentence.split()
-unigram=Counter(words)
-bigram=Counter(ngrams(words,2))
-trigram=Counter(ngrams(words,3))
-V=len(set(words))
-def laplace(count,total):
-    return (count+1)/(total+V)
-print("Unigram Probabilities:")
-for word in unigram:
-    print(word,laplace(unigram[word],len(words)))
-print("\nBigram Probabilities:")
-for pair in bigram:
-    print(pair,laplace(bigram[pair],len(words)))
-print("\nTrigram Probabilities:")
-for triple in trigram:
-    print(triple,laplace(trigram[triple],len(words)))
+text = "social media analytics helps detect trends"
+words = text.split()
+print("\nUnigram:")
+for w in set(words):
+    print(w, ":", (words.count(w)+1)/(len(words)+len(set(words))))
+print("\nBigram:")
+bigrams = list(zip(words, words[1:]))
+for b in set(bigrams):
+    print(b, ":", (bigrams.count(b)+1)/(len(bigrams)+len(set(words))))
+print("\nTrigram:")
+trigrams = list(zip(words, words[1:], words[2:]))
+for t in set(trigrams):
+    print(t, ":", (trigrams.count(t)+1)/(len(trigrams)+len(set(words))))
