@@ -1,0 +1,7 @@
+text1 = "social media analytics"
+text2 = "media analytics trends"
+set1 = set(text1.split())
+set2 = set(text2.split())
+common = set1.intersection(set2)
+similarity = len(common) / (len(set1) * len(set2)) ** 0.5
+print("Similarity:", similarity)
